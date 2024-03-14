@@ -1,3 +1,6 @@
+# 参考
+> https://icloudnative.io/posts/docker-registry-proxy/
+
 # 准备自定义镜像
 
 ## 构建docker镜像
@@ -23,7 +26,6 @@ services:
     hostname: registry-dockerhub
     container_name: registry-dockerhub
     network_mode: bridge
-    user: '0'
     environment:
       - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://registry-1.docker.io
@@ -31,6 +33,58 @@ services:
       - 5000:5000
     volumes:
       - ./data/dh:/var/lib/registry
+  registry-gcr:
+    restart: always
+    image: iatneh1900/docker-proxy
+    hostname: registry-gcr
+    container_name: registry-gcr
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Shanghai
+      - PROXY_REMOTE_URL=https://gcr.io
+    ports:
+      - 5001:5000
+    volumes:
+      - ./data/gcr:/var/lib/registry
+  registry-quay:
+    restart: always
+    image: iatneh1900/docker-proxy
+    hostname: registry-quay
+    container_name: registry-quay
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Shanghai
+      - PROXY_REMOTE_URL=https://quay.io
+    ports:
+      - 5002:5000
+    volumes:
+      - ./data/quay:/var/lib/registry
+  registry-k8s:
+    restart: always
+    image: iatneh1900/docker-proxy
+    hostname: registry-k8s
+    container_name: registry-k8s
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Shanghai
+      - PROXY_REMOTE_URL=https://registry.k8s.io
+    ports:
+      - 5003:5000
+    volumes:
+      - ./data/mcr:/var/lib/registry
+  registry-mcr:
+    restart: always
+    image: iatneh1900/docker-proxy
+    hostname: registry-mcr
+    container_name: registry-mcr
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Shanghai
+      - PROXY_REMOTE_URL=https://mcr.microsoft.com
+    ports:
+      - 5004:5000
+    volumes:
+      - ./data/mcr:/var/lib/registry
 ~~~
 
 
