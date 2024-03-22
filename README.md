@@ -27,7 +27,6 @@ services:
     container_name: registry-dockerhub
     network_mode: bridge
     environment:
-      - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://registry-1.docker.io
     ports:
       - 5000:5000
@@ -40,7 +39,6 @@ services:
     container_name: registry-gcr
     network_mode: bridge
     environment:
-      - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://gcr.io
     ports:
       - 5001:5000
@@ -53,7 +51,6 @@ services:
     container_name: registry-quay
     network_mode: bridge
     environment:
-      - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://quay.io
     ports:
       - 5002:5000
@@ -66,7 +63,6 @@ services:
     container_name: registry-k8s
     network_mode: bridge
     environment:
-      - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://registry.k8s.io
     ports:
       - 5003:5000
@@ -79,7 +75,6 @@ services:
     container_name: registry-mcr
     network_mode: bridge
     environment:
-      - TZ=Asia/Shanghai
       - PROXY_REMOTE_URL=https://mcr.microsoft.com
     ports:
       - 5004:5000
@@ -96,7 +91,7 @@ services:
 1. [登录DockerHub](hub.docker.com)
 2. My Account -> Security -> New Access Token
 
-> 在GitHub`repository`配置DockerHub的账号和AccessToken
+> 在GitHub对应的repository配置DockerHub账号、AccessToken
 1. 进入对应的配置页面 例如：https://github.com/{username}/{repository}/settings/secrets/actions
 2. 新建两个密钥 `DOCKERHUB_USERNAME` `DOCKERHUB_TOKEN` 分别对应DockerHub的 AccountID和AccessToken
 
