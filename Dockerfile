@@ -1,5 +1,5 @@
 FROM registry:2
-LABEL maintainer="registry-proxy Docker Maintainers https://hsiaa.top"
+LABEL maintainer="xiayang1900@gmail.com"
 ENV PROXY_REMOTE_URL="" \
     DELETE_ENABLED=""
 COPY entrypoint.sh /entrypoint.sh
